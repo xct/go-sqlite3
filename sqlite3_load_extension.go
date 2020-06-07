@@ -21,6 +21,12 @@ import (
 	"unsafe"
 )
 
+// added by xct
+func (c *SQLiteConn) EnableLoadExtension(){
+	C.sqlite3_enable_load_extension(c.db, 1)
+}
+
+
 func (c *SQLiteConn) loadExtensions(extensions []string) error {
 	rv := C.sqlite3_enable_load_extension(c.db, 1)
 	if rv != C.SQLITE_OK {

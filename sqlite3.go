@@ -1429,6 +1429,10 @@ func (d *SQLiteDriver) Open(dsn string) (driver.Conn, error) {
 	// Create connection to SQLite
 	conn := &SQLiteConn{db: db, loc: loc, txlock: txlock}
 
+	// added by xct
+	conn.EnableLoadExtension()
+	fmt.Println("Extension loading enabled")
+
 	// Password Cipher has to be registered before authentication
 	if len(authCrypt) > 0 {
 		switch strings.ToUpper(authCrypt) {
